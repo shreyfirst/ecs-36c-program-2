@@ -43,8 +43,8 @@ int main(int argc, char** argv) {
       }
       samplesWithConflictingResults++;
     }
-    result[key]["File1"] = test1;
-    result[key]["File2"] = test2;
+    result[key][argv[1]] = test1;
+    result[key][argv[2]] = test2;
   }
   result["metadata"]["samplesWithConflictingResults"] = samplesWithConflictingResults;
   result["metadata"]["File1"] = json::object({
