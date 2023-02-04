@@ -34,32 +34,32 @@ int Partition(std::vector<int> *numbers, int i, int k, int &comparisons, int &me
 	int l = 0, h = 0, midpoint = 0, pivot = 0, temp = 0;
 	bool done = false;
 	midpoint = i + (k - i) / 2;
-   ++memaccesses;
+	++memaccesses;
 	pivot = (*numbers)[midpoint];
 	l = i;
 	h = k;
 	while (!done)
 	{
-      
 		while ((*numbers)[l] < pivot)
 		{ ++l;
 			++comparisons;
 			++memaccesses;
 		}
-      			++comparisons;
-			++memaccesses;
+
+		++comparisons;
+		++memaccesses;
 
 		while (pivot<(*numbers)[h])
 		{ --h;
 			++comparisons;
 			++memaccesses;
 		}
-      			++comparisons;
-			++memaccesses;
+
+		++comparisons;
+		++memaccesses;
 
 		if (l >= h)
 		{
-         
 			done = true;
 		}
 		else
