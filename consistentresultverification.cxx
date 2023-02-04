@@ -1,13 +1,14 @@
-#include <iostream>
-#include <fstream>
-#include "json.hpp"
+#include <iostream>//iostream
+#include <fstream>//for file reading
+#include "json.hpp"//include to use json library
 
-using json = nlohmann::json;
+using json = nlohmann::json; // shortens json declarations 
+using namespace std; //uses std namespace
 
 int main(int argc, char** argv) {
-  if (argc < 3) {
-    std::cerr << "Usage: " << argv[0] << " file1.json file2.json" << std::endl;
-    return 1;
+  if (argc < 3) {//checks if there is only 2 filenames in command line
+    cerr << "Usage: " << argv[0] << " file1.json file2.json" << std::endl;//error message
+    return 1; //program exits when error message occurs
   }
 
   json json1, json2;
@@ -57,6 +58,6 @@ int main(int argc, char** argv) {
     {"numSamples", json2["metadata"]["numSamples"]},
   });
 
-  std::cout << result.dump(4) << std::endl;
-  return 0;
-}
+  cout << result.dump(2) << endl;//prints result
+  return 0;//return0
+}//endmain
