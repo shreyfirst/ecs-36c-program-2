@@ -19,23 +19,31 @@ int main(int argc, char** argv) {
     return 1;
   }
 
+  std::vector<std::string> keys;
+  for (json::iterator it = json1.begin(); it != json1.end(); ++it) {
+    if (it.key() != "metadata") {
+      keys.push_back(it.key());
+    }
+  }
+
   json result;
   int samplesWithConflictingResults = 0;
-  for (json::iterator it1 = json1.begin(); it1 != json1.end(); ++it1) {
-    json& sample1 = it1.value();
-    json& sample2 = json2[it1.key()];
-    if (sample1 != sample2) {
-      json& mismatches = result[it1.key()]["Mismatches"];
+  for (const auto& key : keys) {
+    json& test1 = json1[key];
+    json& test2 = json2[key];
+    if (test1 != test2) {
+      json& mismatches = result[key]["Mismatches"];
       int mismatchIndex = 0;
-      for (unsigned int i = 0; i < sample1.size(); i++) {
-        if (sample1[i] != sample2[i]) {
-          mismatches[++mismatchIndex] = json::array({sample1[i], sample2[i]});
+      for (unsigned int i = 0; i < test1.size(); i++) {
+        if (test1[i] != test2[i]) {
+          mismatches[std::to_string(mismatchIndex)] = json::array({test1[i], test2[i]});
+          mismatchIndex++;
         }
       }
       samplesWithConflictingResults++;
     }
-    result[it1.key()]["File1"] = sample1;
-    result[it1.key()]["File2"] = sample2;
+    result[key]["File1"] = test1;
+    result[key]["File2"] = test2;
   }
   result["metadata"]["samplesWithConflictingResults"] = samplesWithConflictingResults;
   result["metadata"]["File1"] = json::object({

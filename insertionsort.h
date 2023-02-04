@@ -6,4 +6,4 @@
 
 #include <vector>
 
-void InsertionSort(std::vector<int>* numbers);
+std::vector<int> InsertionSort(std::vector<int>* numbers);
