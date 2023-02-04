@@ -38,8 +38,7 @@ int main(int argc, char *argv[])
 	}
 
 	// Open CSV file
-	ofstream csvFile("output.csv");
-	csvFile << "Sample,InsertionSortTime,InsertionSortCompares,InsertionSortMemaccess,"
+	std::cout << "Sample,InsertionSortTime,InsertionSortCompares,InsertionSortMemaccess,"
 	"MergeSortTime,MergeSortCompares,MergeSortMemaccess,"
 	"QuickSortTime,QuickSortCompares,QuickSortMemaccess" << endl;
 
@@ -81,6 +80,5 @@ int main(int argc, char *argv[])
 			"," << quickSortCompares << "," << quickSortMemaccess << endl;
 	}
 
-	csvFile.close();
 	return 0;
 }
